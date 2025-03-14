@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pookie Pookie</title>
+    <style>
+        body {
+            background-color: #fdfbee;
+            text-align: center;
+            font-family: 'Courier New', monospace;
+            color: #333;
+        }
+        .heart {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            margin-top: 50px;
+        }
+        .heart img {
+            width: 250px;
+        }
+        .text {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .timer {
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h2><br> Hey, Manisha<br></h2>
+    <p><br>
+       Whatever I will say right now, thoda filmy ya stupid lag sakta h, but bear with me.
+When I sent u a connection request on shaadi.com, it was kind of random. As we started talking, I started
+to know u through your stories. I don't know how others look at them, but I found your stories lively,
+energetic, cute and sometimes beautifully silly. As time passed by, I started liking you more and more.
+But as our conversation continued and u said u are very open and not sati-savitri type, I kind of got defensive.
+And I thought u are a red flag and started sounding like I was interviewing u.
+I must have said something that put u off in that instance. I'm sorry for that, it was not intentional.
+But after few months when u again reached out, I realized I was wrong to judge u like that.
+You were just direct, bold and straight-forward. Maybe a little-little drama lover.
+But I kind of liked it, it gave pure jaatni vibes and what's life without a little bit drama.
+But here’s the thing—I don’t make the same mistake twice. I misjudged you once, but now I see you for who you really are.
+And let’s be honest, life’s too short for missed opportunities. So, what do you say?
+    </p>
+    <div class="timer" id="countdown"></div>
+    <p>Time since I first heard your voice.</p>
+    
+    <script>
+        function updateCountdown() {
+            const futureDate = new Date("August 14, 2024 13:16:00").getTime();
+            const now = new Date().getTime();
+            const difference = now - futureDate;
+            
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            
+            document.getElementById("countdown").innerHTML = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+        }
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
