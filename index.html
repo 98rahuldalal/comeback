@@ -11,7 +11,11 @@
             font-family: 'Courier New', monospace;
             color: #333;
         }
-        
+        canvas {
+            display: block;
+            margin: 40px auto;
+            background-color: transparent;
+        }
         .text {
             margin-top: 20px;
             font-size: 1.2em;
@@ -39,6 +43,9 @@ But I kind of liked it, it gave core jat vibes and what's life without a little 
 But here’s the thing—I don’t make the same mistake twice. I misjudged you once, but now I see you for who you really are.
 And let’s be honest, life’s too short for missed opportunities. So, what do you say?
     </p>
+
+    <canvas id="heartCanvas" width="400" height="360"></canvas>
+    
     <div class="timer" id="countdown"></div>
     <p>Time since I first heard your voice.</p>
     
@@ -57,6 +64,40 @@ And let’s be honest, life’s too short for missed opportunities. So, what do 
         }
         setInterval(updateCountdown, 1000);
         updateCountdown();
+
+        const canvas = document.getElementById("heartCanvas");
+        const ctx = canvas.getContext("2d");
+
+        let pulse = 1;
+        let pulseDirection = 1;
+
+        function drawHeart(scale) {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.save();
+            ctx.translate(canvas.width / 2, canvas.height / 2);
+            ctx.scale(scale, scale);
+            ctx.shadowColor = "red";
+            ctx.shadowBlur = 30;
+            ctx.fillStyle = "red";
+            for (let angle = 0; angle <= 2 * Math.PI; angle += 0.01) {
+                const x = 16 * Math.pow(Math.sin(angle), 3);
+                const y = -(13 * Math.cos(angle) - 5 * Math.cos(2 * angle) - 2 * Math.cos(3 * angle) - Math.cos(4 * angle));
+                ctx.beginPath();
+                ctx.arc(x * 8, y * 8, 2, 0, 2 * Math.PI);
+                ctx.fill();
+            }
+            ctx.restore();
+        }
+
+        function animatePulse() {
+            drawHeart(pulse);
+            pulse += 0.01 * pulseDirection;
+            if (pulse >= 1.1 || pulse <= 0.9) pulseDirection *= -1;
+            requestAnimationFrame(animatePulse);
+        }
+
+        animatePulse();
+
     </script>
 </body>
 </html>
